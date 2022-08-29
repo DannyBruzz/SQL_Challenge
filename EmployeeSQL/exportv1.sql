@@ -1,5 +1,6 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+-- Created tables and exported to PostgresSQL
 
 
 CREATE TABLE "departments" (
@@ -70,3 +71,9 @@ REFERENCES "employees" ("emp_no");
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "departments" ("dept_no");
 
+-- Run in separate query to change to DATE type
+
+ALTER TABLE "employees" ALTER COLUMN "hire_date" TYPE DATE
+using to_date("hire_date", 'MM/DD/YYYY');
+ALTER TABLE "employees" ALTER COLUMN "birth_date" TYPE DATE
+using to_date("birth_date", 'MM/DD/YYYY');
